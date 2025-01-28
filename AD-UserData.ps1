@@ -70,10 +70,9 @@ function Export-ADUserData {
         ) + (1..10 | ForEach-Object { "dxMidOU$_" })
 
         $patternsToRemove = [System.Collections.Generic.HashSet[string]]@(
-
-            "BORSOD-ABAÚJ-ZEMPLÉN VÁRMEGYEI RENDŐR-FŐKAPITÁNYSÁG",
-            "VMRFK HELYI BESOROLÁSÚ SZERVEI",
-            "BRFK+19VMRFK"
+            # Patterns to remove from the dxMidOU values
+            # Add any unwanted patterns to this list
+            # 'Pattern1', 'Pattern2', ...
         )
         
         # Create output directory if needed
@@ -220,9 +219,9 @@ function Process-DxMidOU {
     param($User)
 
     $replacementConfig = @{
-        # 'Search' = 'Replacement'
-        'RENDŐRŐRS MEZŐCSÁT \(OSZTÁLY JOGÁLLÁSÚ\)' = 'RENDŐRŐRS MEZŐCSÁT'
-        'SZABÁLYSÉRTÉSI ELŐKÉSZÍTŐ CSOPORT \(ÖNÁLLÓ\)' = 'SZABÁLYSÉRTÉSI ELŐKÉSZÍTŐ CSOPORT'
+        # Replace patterns in the dxMidOU values
+        # Add any custom replacement patterns here
+        # 'Pattern1' = 'Replacement1',
     }
 
     $dxMidOUs = [System.Collections.Generic.List[string]]::new(10)
